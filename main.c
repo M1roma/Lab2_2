@@ -28,5 +28,29 @@ int main() {
     printf("Введіть кількість розбиттів N: ");
     scanf("%d", &n);
 
+    double h = (b - a) / n;
+    double result = 0.0;
+
+    if (method == 1) {
+        // МЕТОД ЛІВИХ ПРЯМОКУТНИКІВ
+        double sum = 0.0;
+        for (int i = 0; i < n; i++) {
+            double x = a + i * h;
+            sum += f(x);
+        }
+        result = sum * h;
+
+    } else if (method == 2) {
+        // МЕТОД ПРАВИХ ПРЯМОКУТНИКІВ
+        double sum = 0.0;
+        for (int i = 1; i <= n; i++) {
+            double x = a + i * h;
+            sum += f(x);
+        }
+        result = sum * h;
+    }
+
+    printf("\nРезультат: %.8f\n", result);
+    
     return 0;
 }
