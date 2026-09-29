@@ -16,16 +16,16 @@ int main() {
     double exact_value = log(1.5) - (1.0 / 3.0);
 
     printf("=========================================\n");
-    printf("       Чисельне інтегрування на C        \n");
+    printf("       Numerical Integration in C       \n");
     printf("=========================================\n");
-    printf("Оберіть метод:\n");
-    printf("  1 - Метод ЛІВИХ прямокутників\n");
-    printf("  2 - Метод ПРАВИХ прямокутників\n");
-    printf("  3 - Метод Сімпсона (парабол)\n");
-    printf("Ваш вибір (1-3): ");
+    printf("select method:\n");
+    printf("  1 - Left Rectangle Method\n");
+    printf("  2 - Right Rectangle Method\n");
+    printf("  3 - Simpson's Method (Parabolic)\n");
+    printf("You choice (1-3): ");
     scanf("%d", &method);
 
-    printf("Введіть кількість розбиттів N: ");
+    printf("ВEnter the number of subdivisions N: ");
     scanf("%d", &n);
 
     double h = (b - a) / n;
@@ -48,19 +48,12 @@ int main() {
             sum += f(x);
         }
         result = sum * h;
-    } else if (method == 2) {
-        double sum = 0.0;
-        for (int i = 1; i <= n; i++) {
-            double x = a + i * h;
-            sum += f(x);
-        }
-        result = sum * h;
 
     } else if (method == 3) {
         if (n % 2 != 0) {
             n++;
             h = (b - a) / n;
-            printf("(N змінено на %d, бо для Сімпсона потрібне парне N)\n", n);
+            printf("(Note: N was adjusted to %d because Simpson's method requires an even N)\n", n);
         }
 
         double sum = f(a) + f(b);
@@ -75,16 +68,16 @@ int main() {
         result = sum * (h / 3.0);
 
     } else {
-        printf("\nПомилка: Некоректний вибір методу!\n");
+        printf("\nError: Invalid method selection!\n");
         return 1;
     }
 
     double error = fabs(result - exact_value);
 
     printf("\n-----------------------------------------\n");
-    printf("Результат обчислення : %.8f\n", result);
-    printf("Точне значення        : %.8f\n", exact_value);
-    printf("Абсолютна похибка    : %.8f\n", error);
+    printf("Calculated Result : %.8f\n", result);
+    printf("exact value        : %.8f\n", exact_value);
+    printf("absolte error   : %.8f\n", error);
     printf("-----------------------------------------\n");
 
     return 0;
