@@ -48,9 +48,44 @@ int main() {
             sum += f(x);
         }
         result = sum * h;
+    } else if (method == 2) {
+        double sum = 0.0;
+        for (int i = 1; i <= n; i++) {
+            double x = a + i * h;
+            sum += f(x);
+        }
+        result = sum * h;
+
+    } else if (method == 3) {
+        if (n % 2 != 0) {
+            n++;
+            h = (b - a) / n;
+            printf("(N змінено на %d, бо для Сімпсона потрібне парне N)\n", n);
+        }
+
+        double sum = f(a) + f(b);
+        for (int i = 1; i < n; i++) {
+            double x = a + i * h;
+            if (i % 2 != 0) {
+                sum += 4.0 * f(x);
+            } else {
+                sum += 2.0 * f(x);
+            }
+        }
+        result = sum * (h / 3.0);
+
+    } else {
+        printf("\nПомилка: Некоректний вибір методу!\n");
+        return 1;
     }
 
-    printf("\nРезультат: %.8f\n", result);
-    
+    double error = fabs(result - exact_value);
+
+    printf("\n-----------------------------------------\n");
+    printf("Результат обчислення : %.8f\n", result);
+    printf("Точне значення        : %.8f\n", exact_value);
+    printf("Абсолютна похибка    : %.8f\n", error);
+    printf("-----------------------------------------\n");
+
     return 0;
 }
