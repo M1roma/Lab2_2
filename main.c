@@ -30,25 +30,23 @@ int main() {
 
     double h = (b - a) / n;
     double result = 0.0;
-
-    if (method == 1) {
-        // МЕТОД ЛІВИХ ПРЯМОКУТНИКІВ
+    // МЕТОД ЛІВИХ ПРЯМОКУТНИКІВ
+    if (method == 1) { 
         double sum = 0.0;
         for (int i = 0; i < n; i++) {
             double x = a + i * h;
             sum += f(x);
         }
         result = sum * h;
-
+      // МЕТОД ПРАВИХ ПРЯМОКУТНИКІВ
     } else if (method == 2) {
-        // МЕТОД ПРАВИХ ПРЯМОКУТНИКІВ
         double sum = 0.0;
         for (int i = 1; i <= n; i++) {
             double x = a + i * h;
             sum += f(x);
         }
         result = sum * h;
-      // --- 3. МЕТОД СІМПСОНА ---
+      // МЕТОД СІМПСОНА
     } else if (method == 3) {
         if (n % 2 != 0) {
             n++;
@@ -68,7 +66,7 @@ int main() {
         result = sum * (h / 3.0);
 
         else if (method == 4) {
-        // --- 4. МЕТОД ТРАПЕЦІЙ ---
+        // МЕТОД ТРАПЕЦІЙ 
         double sum = (f(a) + f(b)) / 2.0;
         for (int i = 1; i < n; i++) {
             double x = a + i * h;
@@ -77,7 +75,7 @@ int main() {
         result = sum * h;
         
         } else {
-        // --- 5. ПОМИЛКА ЯКЩО ВВЕДЕНО НЕІСНУЮЧИЙ МЕТОД ---
+        // ПОМИЛКА ЯКЩО ВВЕДЕНО НЕІСНУЮЧИЙ МЕТОД 
         printf("\nError: Invalid method selection!\n");
         return 1;
     }
