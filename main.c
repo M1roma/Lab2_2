@@ -22,6 +22,7 @@ int main() {
     printf("  1 - Left Rectangle Method\n");
     printf("  2 - Right Rectangle Method\n");
     printf("  3 - Simpson's Method (Parabolic)\n");
+    printf("  4 - trapezium Method\n");
     printf("You choice (1-3): ");
     scanf("%d", &method);
 
@@ -65,7 +66,7 @@ int main() {
         }
         result = sum * (h / 3.0);
 
-        else if (method == 4) {
+    } else if (method == 4) {
         // МЕТОД ТРАПЕЦІЙ 
         double sum = (f(a) + f(b)) / 2.0;
         for (int i = 1; i < n; i++) {
