@@ -25,7 +25,7 @@ int main() {
     printf("You choice (1-3): ");
     scanf("%d", &method);
 
-    printf("ВEnter the number of subdivisions N: ");
+    printf("Enter the number of subdivisions N: ");
     scanf("%d", &n);
 
     double h = (b - a) / n;
@@ -48,7 +48,7 @@ int main() {
             sum += f(x);
         }
         result = sum * h;
-
+      // --- 3. МЕТОД СІМПСОНА ---
     } else if (method == 3) {
         if (n % 2 != 0) {
             n++;
@@ -67,7 +67,17 @@ int main() {
         }
         result = sum * (h / 3.0);
 
-    } else {
+        else if (method == 4) {
+        // --- 4. МЕТОД ТРАПЕЦІЙ ---
+        double sum = (f(a) + f(b)) / 2.0;
+        for (int i = 1; i < n; i++) {
+            double x = a + i * h;
+            sum += f(x);
+        }
+        result = sum * h;
+        
+        } else {
+        // --- 5. ПОМИЛКА ЯКЩО ВВЕДЕНО НЕІСНУЮЧИЙ МЕТОД ---
         printf("\nError: Invalid method selection!\n");
         return 1;
     }
